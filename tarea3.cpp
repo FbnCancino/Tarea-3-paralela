@@ -4,6 +4,7 @@
 #include <stdlib.h>
 #include <cstdlib>
 #include <string>
+#include <string.h>
 #include <vector> 
 
 using namespace std;
@@ -22,7 +23,13 @@ bool verificar(string n){
 	}
 }
 
-void faltantes(int matriz[][], int n[], int a){
+
+int Convierte (string valor){   
+	int n = atoi(valor.c_str()); 
+    return n; 
+}
+
+void faltantes(int matriz[][3], int n[], int a){
     int aux =1;
     for(int i=0; i<3;i++){
         for(int j=0;j<3;j++){
@@ -46,9 +53,14 @@ void mostrar(int matriz[][3]){
 	}
 }
 
-int main(int argc, char* argv[]){
+int main(int argc, string* argv[]){
 
+     //variables necesarias
     int  matriz[3][3];
+    int ct=0 ,ct_usa=0;
+    int n[3], n_usa[9],  
+    string soap = argv[1];
+    string rest;  
     for(int i=0; i<3; i++){
 		for(int j=0; j<3; j++){
 			matriz[i][j]=0;
@@ -57,19 +69,12 @@ int main(int argc, char* argv[]){
 	//Para ingresar datos, se ingresa con el siguiente formato: ./ejecutable "[1;2;3]" "[4;5;6]" "[7;8;9]"
 
 	if (argc >2){
-
-		if(verificar(argv[1])== true){ // comprobamos que el argumento sean validos
-        
-        	//variables necesarias
-            int ct=0 ,ct_usa=0;
-            int n[3], n_usa[9],  
-            string a=argv[1];
-            string b;              
+		if(verificar(argv[1])== true){ // comprobamos que el argumento sean validos            
             // recorremos para guardar el valor en la posicion indicada
-            for(int i=0; i< a.length(); i++){ 
-                b= a[i];
-                if(verificar(b)== true){
-                    n[ct]= b-48;
+            for(int i=0; i< soap.length(); i++){ 
+                json= soap[i];
+                if(verificar(json)== true){
+                    n[ct]= convierte (json) - 48;
                     ct++;
                 }
                 if(ct==3) {
